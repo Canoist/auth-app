@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Задача:
 
-## Getting Started
+Реализовать приложение с авторизацией. В качестве фреймворка использвать next js + typescript.
 
-First, run the development server:
+Развернуть проект командой: `npx create-next-app@latest --ts --use-npm`
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Бэк:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://ns-auth.herokuapp.com/ (по ссылке доступна документация)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Список дефолтных роутов:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+-   `/login`
+-   `/dashboard`
+-   `/admin`
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### По правам пользователей:
 
-## Learn More
+-   `/login` - недоступна для авторизованных пользователей.
+-   `/dashboard` - доступна обыкновенному пользователю и админу
+-   `/admin` - доступна только админу
 
-To learn more about Next.js, take a look at the following resources:
+### Контент на странице:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   `/login` - сверстать форму с полями: email, password и кнопкой сабмита (для успешной аутентификации под админом используйте: `admin@g.com admin`, под пользователем - `user@g.com user`).
+-   `/dashboard` - вывести в виде карточек название локаций доступных по эндпоинту `/locations`.
+    Добавить на каждую карточку кнопку, которую видит только админ, на кнопку повесить событие алерта с айдишником локации
+-   `/admin` - заполнить любой однотипной информация на ваше усмотрение
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### По логике авторизации:
 
-## Deploy on Vercel
+При успешной авторизации - перебросить на страницу `/dashboard`.  
+При неуспешной авторизации - вывести ошибку под формой
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Требования:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+-   Паттерн аутентификации - любой (csr, ssr)
+-   Токен хранится в куках
+-   Авторизация не должна сбрасываться после перезагрузки страницы
+-   Не должно происходить флешинга контента при попытке перейти на приватную страницу
+-   Роуты должны быть защищены и разделены по ролям
+-   Оформление на ваше усмотрение
+-   При необходимости разрешается использование сторонних библиотек
+
+### Результат опубликовать на GitHub
