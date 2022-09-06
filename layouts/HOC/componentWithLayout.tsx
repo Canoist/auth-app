@@ -1,14 +1,17 @@
 import { Role } from "../../interfaces/IUser";
 import { Layout } from "../Layout";
+import RouteHOC from "./routeHOC";
 
 const WithLayout = <T extends Record<string, unknown>>(
     Component: React.FC<T>
 ) => {
-    return function componentWithLayout(props: T): JSX.Element {
+    return function withLayoutAndRouting(props: T): JSX.Element {
         return (
-            <Layout>
-                <Component {...props} />
-            </Layout>
+            <RouteHOC>
+                <Layout>
+                    <Component {...props} />
+                </Layout>
+            </RouteHOC>
         );
     };
 };

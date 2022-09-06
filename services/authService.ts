@@ -17,14 +17,10 @@ const authService = {
         return data;
     },
     me: async (token: string) => {
-        try {
-            const { data } = await httpService.get<IUser>("/auth/me", {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            return data;
-        } catch (error) {
-            return null;
-        }
+        const { data } = await httpService.get<IUser>("/auth/me", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return data;
     },
     logout: async () => {},
 };
