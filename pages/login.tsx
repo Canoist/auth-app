@@ -9,8 +9,10 @@ const Login: React.FC = () => {
     const router = useRouter();
 
     useEffect(() => {
+        console.log(isLoggedIn);
+        
         if (isLoggedIn) {
-            router.push("/daashboard");
+            router.push("/dashboard");
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,4 +20,5 @@ const Login: React.FC = () => {
 
     return <LoginForm />;
 };
-export default WithLayout(Login);
+export default (WithLayout(Login));
+

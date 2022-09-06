@@ -1,7 +1,7 @@
 import IUser from "../interfaces/IUser";
 import httpService from "./httpService";
 import localStorageService from "./cookiesService";
-import { setCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 interface IReq {
     email: string;
@@ -11,18 +11,19 @@ interface IReq {
 const authService = {
     login: async (payload: IReq) => {
         const { data } = await httpService.post<IUser>("/auth/login", payload);
-        setCookie("token", data.token);
-        return data;
-    },
-    me: async (token: string) => {
-        const { data } = await httpService.post<IUser>("/auth/me", {
-            token,
+        setCookie("token", data.token, {
+            expires: new Date(Date.now() + 360 * 1000 * 24),
         });
         return data;
     },
-    logout: async () => {
-        
-    }
+    me: async () => {
+        const token = getCookie("token");
+        const { data } = await httpService.get<IUser>("/auth/me", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return data;
+    },
+    logout: async () => {},
 };
 
 export default authService;
