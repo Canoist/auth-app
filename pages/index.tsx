@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import WithLayout from "../layouts/HOC/componentWithLayout";
-import ProvideComponent from "../layouts/HOC/provideComponent";
 
 const Home: NextPage = () => {
     return (
@@ -13,4 +12,4 @@ const Home: NextPage = () => {
     );
 };
 
-export default ProvideComponent(WithLayout(Home));
+export default WithLayout(Home);

@@ -12,16 +12,19 @@ const authService = {
     login: async (payload: IReq) => {
         const { data } = await httpService.post<IUser>("/auth/login", payload);
         setCookie("token", data.token, {
-            expires: new Date(Date.now() + 360 * 1000 * 24),
+            maxAge: 60 * 60 * 24,
         });
         return data;
     },
-    me: async () => {
-        const token = getCookie("token");
-        const { data } = await httpService.get<IUser>("/auth/me", {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        return data;
+    me: async (token: string) => {
+        try {
+            const { data } = await httpService.get<IUser>("/auth/me", {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            return data;
+        } catch (error) {
+            return null;
+        }
     },
     logout: async () => {},
 };

@@ -1,4 +1,4 @@
-import { Role } from "../context/AppContext";
+export type Role = "ADMIN" | "USER" | null;
 
 export default interface IUser {
     token: string;

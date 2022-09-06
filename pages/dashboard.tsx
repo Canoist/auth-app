@@ -1,24 +1,43 @@
+import { getCookie } from "cookies-next";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
-import AppContext from "../context/AppContext";
 import WithLayout from "../layouts/HOC/componentWithLayout";
-import ProvideComponent from "../layouts/HOC/provideComponent";
-import ProtectedRoutes from "../layouts/HOC/provideComponent";
+import authService from "../services/authService";
+import { RoleProps } from "./login";
 
-const Dashboard: React.FC = () => {
-    const { isLoggedIn, role } = useContext(AppContext);
+const Dashboard: React.FC<RoleProps> = ({ role }) => {
     const router = useRouter();
 
-    console.log(isLoggedIn);
-    
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!role) {
             router.push("/login");
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isLoggedIn]);
+    }, [role]);
 
     return role !== null ? <div>Dash Page</div> : <></>;
 };
-export default ProvideComponent(WithLayout(Dashboard));
+export default WithLayout(Dashboard);
+
+export const getServerSideProps: GetServerSideProps<RoleProps> = async ({
+    req,
+    res,
+}) => {
+    const token = getCookie("token", { req, res });
+    console.log("token ", typeof token);
+    if (token && typeof token == "string") {
+        const data = await authService.me(token);
+        return {
+            props: {
+                role: data!.role,
+            },
+        };
+    }
+    return {
+        props: {
+            role: null,
+        },
+    };
+};
