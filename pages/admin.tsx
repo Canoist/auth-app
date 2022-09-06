@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
+import WithLayout from "../layouts/HOC/componentWithLayout";
 
 const Admin: React.FC = () => {
     const { isLoggedIn } = useContext(AppContext);
@@ -14,4 +15,4 @@ const Admin: React.FC = () => {
     }, [isLoggedIn]);
     return <div>Some info</div>;
 };
-export default Admin;
+export default WithLayout(Admin);

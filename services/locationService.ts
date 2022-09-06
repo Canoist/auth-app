@@ -1,7 +1,7 @@
 import httpService from "./httpService";
 import ILocation from "../interfaces/Ilocation";
 
-const authService = {
+const locationService = {
     get: async () => {
         const { data } = await httpService.get<ILocation[]>("/locations");
         console.log(data);
@@ -10,4 +10,4 @@ const authService = {
     },
 };
 
-export default authService;
+export default locationService;

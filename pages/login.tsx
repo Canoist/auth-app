@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
+import WithLayout from "../layouts/HOC/componentWithLayout";
+import LoginForm from "../layouts/loginForm/loginForm";
 
 const Login: React.FC = () => {
     const { isLoggedIn } = useContext(AppContext);
@@ -14,6 +16,6 @@ const Login: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLoggedIn]);
 
-    return <div>Login Page</div>;
+    return <LoginForm />;
 };
-export default Login;
+export default WithLayout(Login);

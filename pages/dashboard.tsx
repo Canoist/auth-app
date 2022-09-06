@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 import AppContext from "../context/AppContext";
+import WithLayout from "../layouts/HOC/componentWithLayout";
 import ProtectedRoutes from "../layouts/HOC/provideComponent";
 
 const Dashboard: React.FC = () => {
@@ -17,4 +18,4 @@ const Dashboard: React.FC = () => {
 
     return <div>Dash Page</div>;
 };
-export default Dashboard;
+export default WithLayout(Dashboard);

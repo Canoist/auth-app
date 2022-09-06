@@ -1,0 +1,11 @@
+.wrapper {
+    display: grid;
+
+    min-height: 100vh;
+    grid-template-columns: auto minmax(320px, 800px) auto;
+    grid-template-areas: ". body .";
+}
+
+.body {
+    grid-area: body;
+}
