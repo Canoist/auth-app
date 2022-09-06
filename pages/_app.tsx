@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { AppContextProvider } from "../context/AppContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>My new title</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Component {...pageProps} />;
+            <AppContextProvider>
+                <Component {...pageProps} />;
+            </AppContextProvider>
         </>
     );
 }

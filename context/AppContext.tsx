@@ -1,24 +1,40 @@
-import React, { createContext, PropsWithChildren, useState } from "react";
+import { getCookie } from "cookies-next";
+import React, {
+    createContext,
+    PropsWithChildren,
+    useEffect,
+    useState,
+} from "react";
+import { Role } from "../interfaces/IUser";
+import authService from "../services/authService";
 
 export interface IAppContext {
-    isLoggedIn: boolean;
-    setIsLoggedIn?: (value: boolean) => void;
+    role?: Role;
+    setRole?: (role: Role) => void;
 }
 
-export const AppContext = createContext<IAppContext>({ isLoggedIn: false });
+export const AppContext = createContext<IAppContext>({ role: null });
 
 export const AppContextProvider: React.FC<PropsWithChildren<IAppContext>> = ({
-    isLoggedIn,
+    role,
     children,
 }) => {
-    const [loggedIn, setLoggedIn] = useState<boolean>(isLoggedIn);
+    const [_role, setRole] = useState<Role>(null);
+    console.log(_role);
 
-    const setIsLoggedIn = (value: boolean) => {
-        setLoggedIn(value);
-    };
+    useEffect(() => {
+        const token = getCookie("token");
+        if (token && typeof token == "string") {
+            const getData = async () => {
+                const data = await authService.me(token);
+                setRole(data.role);
+            };
+            getData();
+        }
+    }, [role]);
 
     return (
-        <AppContext.Provider value={{ isLoggedIn: loggedIn, setIsLoggedIn }}>
+        <AppContext.Provider value={{ role: _role, setRole }}>
             {children}
         </AppContext.Provider>
     );
