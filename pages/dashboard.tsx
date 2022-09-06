@@ -1,6 +1,6 @@
 import React from "react";
+import { RoleProps } from "../interfaces/IUser";
 import WithLayout from "../layouts/HOC/componentWithLayout";
-import { RoleProps } from "../layouts/HOC/routeHOC";
 
 const Dashboard: React.FC<RoleProps> = ({ role }) => {
     if (role == "ADMIN") {

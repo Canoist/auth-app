@@ -1,7 +1,6 @@
 import IUser from "../interfaces/IUser";
 import httpService from "./httpService";
-import localStorageService from "./cookiesService";
-import { getCookie, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 
 interface IReq {
     email: string;
