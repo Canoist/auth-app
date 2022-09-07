@@ -4,6 +4,10 @@
     box-shadow: 0 8px 8px rgb(0 0 0 / 25%);
 }
 
+.smallShadow {
+    box-shadow: 0 4px 4px rgb(0 0 0 / 10%);
+}
+
 .blue {
     background: #f9f8ff;
 }

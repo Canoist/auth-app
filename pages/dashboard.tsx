@@ -17,15 +17,14 @@ const Dashboard: React.FC<IDashboard> = ({ role, locations }) => {
         return (
             <div>
                 Dash Page
-                <h2>ADMIN</h2>
-                <Locations locations={locations} />
+                <Locations admin={true} locations={locations} />
             </div>
         );
     }
     return (
         <div>
             Dash Page
-            <Locations locations={locations} />
+            <Locations admin={false} locations={locations} />
         </div>
     );
 };
