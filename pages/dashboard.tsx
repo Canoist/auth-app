@@ -1,7 +1,7 @@
 import { getCookie } from "cookies-next";
 import { GetServerSideProps } from "next";
 import React from "react";
-import Locations from "../components/Locations/Locations";
+import { Locations } from "../components";
 import ILocation from "../interfaces/Ilocation";
 import { RoleProps } from "../interfaces/IUser";
 import WithLayout from "../layouts/HOC/componentWithLayout";

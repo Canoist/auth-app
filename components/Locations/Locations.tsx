@@ -1,18 +1,19 @@
-import React from "react";
+import cn from "classnames";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import ILocation from "../../interfaces/Ilocation";
+import { LocationCard } from "../LocationCard/LocationCard";
+import styles from "./Locations.module.css";
 
-interface ILocations {
+interface ILocations
+    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     locations: ILocation[];
 }
-const Locations: React.FC<ILocations> = ({ locations }) => {
+export const Locations: React.FC<ILocations> = ({ locations, className }) => {
     return (
-        <div>
-            <ul>
-                {locations.map((loc) => (
-                    <li key={loc.id}>{loc.name}</li>
-                ))}
-            </ul>
+        <div className={cn(className, styles.locations)}>
+            {locations.map((loc) => (
+                <LocationCard key={loc.id} location={loc} />
+            ))}
         </div>
     );
 };
-export default Locations;
