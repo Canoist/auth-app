@@ -9,11 +9,7 @@ import { Button, Card, Input, Paragraph } from "../../components";
 import authService from "../../services/authService";
 import styles from "./loginForm.module.css";
 import cn from "classnames";
-
-const defaultValues = {
-    email: "",
-    password: "",
-};
+import { useRouter } from "next/router";
 
 export interface IFormInputs {
     email: string;
@@ -33,11 +29,17 @@ const LoginForm: React.FC<ILoginForm> = ({ className }) => {
         formState: { errors },
     } = useForm<IFormInputs>();
 
+    const router = useRouter();
+
     const onSubmit: SubmitHandler<IFormInputs> = async (
         dataForm: IFormInputs
     ) => {
-        const data = await authService.login(dataForm);
-        console.log(data);
+        try {
+            await authService.login(dataForm);
+            router.push("/dashboard");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
