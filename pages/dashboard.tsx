@@ -22,7 +22,12 @@ const Dashboard: React.FC<IDashboard> = ({ role, locations }) => {
             </div>
         );
     }
-    return <div>Dash Page</div>;
+    return (
+        <div>
+            Dash Page
+            <Locations locations={locations} />
+        </div>
+    );
 };
 export default WithLayout(Dashboard);
 

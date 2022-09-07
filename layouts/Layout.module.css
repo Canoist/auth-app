@@ -2,11 +2,20 @@
     display: grid;
 
     min-height: 100vh;
-    grid-template-columns: auto minmax(320px, 800px) auto;
+    grid-template-columns: auto minmax(320px, 600px) auto;
     grid-template-areas: ". body .";
 }
 
 .body {
     margin-top: 15px;
+    padding: 15px;
     grid-area: body;
+    position: relative;
+    border: 1px solid red;
+}
+
+.button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
 }
