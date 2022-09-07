@@ -1,16 +1,24 @@
 import { getCookie } from "cookies-next";
 import { GetServerSideProps } from "next";
 import React from "react";
+import Locations from "../components/Locations/Locations";
+import ILocation from "../interfaces/Ilocation";
 import { RoleProps } from "../interfaces/IUser";
 import WithLayout from "../layouts/HOC/componentWithLayout";
 import authService from "../services/authService";
+import locationService from "../services/locationService";
 
-const Dashboard: React.FC<RoleProps> = ({ role }) => {
+interface IDashboard extends RoleProps, Record<string, unknown> {
+    locations: ILocation[];
+}
+
+const Dashboard: React.FC<IDashboard> = ({ role, locations }) => {
     if (role == "ADMIN") {
         return (
             <div>
                 Dash Page
                 <h2>ADMIN</h2>
+                <Locations locations={locations} />
             </div>
         );
     }
@@ -18,15 +26,19 @@ const Dashboard: React.FC<RoleProps> = ({ role }) => {
 };
 export default WithLayout(Dashboard);
 
-export const getServerSideProps: GetServerSideProps<RoleProps> = async ({
+export const getServerSideProps: GetServerSideProps<IDashboard> = async ({
     req,
     res,
 }) => {
     const token = getCookie("token", { req, res });
     if (typeof token == "string") {
         const data = await authService.me(token);
+        const locations = await locationService.get(token);
         if (data?.role) {
-            return { props: { role: data.role } };
+            if (locations) {
+                return { props: { role: data.role, locations } };
+            }
+            return { props: { role: data.role, locations: [] } };
         }
     }
     return {
