@@ -10,8 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <title>My new title</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <AppContextProvider> */}
-            <Component {...pageProps} />;{/* </AppContextProvider> */}
+            <Component {...pageProps} />
         </>
     );
 }

@@ -5,9 +5,9 @@ const WithLayout = <T extends Record<string, unknown>>(
 ) => {
     return function withLayoutAndRouting(props: T): JSX.Element {
         return (
-                <Layout>
-                    <Component {...props} />
-                </Layout>
+            <Layout>
+                <Component {...props} />
+            </Layout>
         );
     };
 };

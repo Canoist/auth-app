@@ -1,7 +1,7 @@
 import { getCookie } from "cookies-next";
 import { GetServerSideProps } from "next";
 import React from "react";
-import { Locations } from "../components";
+import { Htag, Locations } from "../components";
 import ILocation from "../interfaces/Ilocation";
 import { RoleProps } from "../interfaces/IUser";
 import WithLayout from "../layouts/HOC/componentWithLayout";
@@ -15,17 +15,17 @@ interface IDashboard extends RoleProps, Record<string, unknown> {
 const Dashboard: React.FC<IDashboard> = ({ role, locations }) => {
     if (role == "ADMIN") {
         return (
-            <div>
-                Dash Page
+            <>
+                <Htag tag="h2">Dashboard Page</Htag>
                 <Locations admin={true} locations={locations} />
-            </div>
+            </>
         );
     }
     return (
-        <div>
-            Dash Page
+        <>
+            <Htag tag="h2">Dash Page</Htag>
             <Locations admin={false} locations={locations} />
-        </div>
+        </>
     );
 };
 export default WithLayout(Dashboard);
