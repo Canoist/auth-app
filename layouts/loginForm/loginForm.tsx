@@ -46,8 +46,27 @@ const LoginForm: React.FC<ILoginForm> = ({ className }) => {
         <form
             className={cn(className, styles.form)}
             onSubmit={handleSubmit(onSubmit)}>
-            <Card className={styles.card} color="" >
-                <p>user@g.com/user or admin@g.com/admin</p>
+            <div className={styles.mock}>
+                <div>
+                    <Paragraph variant="l">To enter as admin</Paragraph>
+                    <Paragraph className={styles.label} variant="s">
+                        email: admin@g.com
+                    </Paragraph>
+                    <Paragraph className={styles.label} variant="s">
+                        password: admin
+                    </Paragraph>
+                </div>
+                <div>
+                    <Paragraph variant="l">To enter as user</Paragraph>
+                    <Paragraph className={styles.label} variant="s">
+                        email: user@g.com
+                    </Paragraph>
+                    <Paragraph className={styles.label} variant="s">
+                        password: user
+                    </Paragraph>
+                </div>
+            </div>
+            <Card className={styles.card}>
                 <Paragraph className={styles.label} variant="m">
                     Email
                 </Paragraph>

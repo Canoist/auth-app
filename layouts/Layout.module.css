@@ -13,6 +13,7 @@
     padding: 15px;
     grid-area: body;
     position: relative;
+    text-align: center;
 }
 
 .button {

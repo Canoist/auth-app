@@ -1,13 +1,19 @@
 .form {
     margin: 0 auto;
+    text-align: left;
+}
+
+.mock {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* box-shadow: 0 4px 4px rgb(0 0 0 / 5%); */
-    padding: 3rem 2rem;
+    padding: 1rem 2rem 3rem;
     margin: 0 auto;
     z-index: 2;
 }

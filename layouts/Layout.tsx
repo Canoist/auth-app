@@ -1,7 +1,7 @@
 import { removeCookies } from "cookies-next";
 import { useRouter } from "next/router";
 import React from "react";
-import { Button } from "../components";
+import { Button, Htag } from "../components";
 import styles from "./Layout.module.css";
 // import cn from "classnames";
 
@@ -16,10 +16,13 @@ export const Layout: React.FC<ILayout> = ({ children }) => {
         removeCookies("token");
         router.push("/login");
     };
+    console.log(router.asPath !== "/login" && "/");
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.body}>
-                {router.asPath !== "/login" && (
+                <Htag tag="h1">Welcome to auth app</Htag>
+                {router.asPath !== "/login" && router.asPath !== "/" && (
                     <Button
                         className={styles.button}
                         appearance="ghost"
