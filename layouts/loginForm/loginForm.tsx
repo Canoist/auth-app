@@ -46,14 +46,16 @@ const LoginForm: React.FC<ILoginForm> = ({ className }) => {
         <form
             className={cn(className, styles.form)}
             onSubmit={handleSubmit(onSubmit)}>
-            <Card>
-                <p>user@g.com</p>
-                <p>admin@g.com</p>
-                <Paragraph variant="m">Email</Paragraph>
+            <Card className={styles.card} color="" >
+                <p>user@g.com/user or admin@g.com/admin</p>
+                <Paragraph className={styles.label} variant="m">
+                    Email
+                </Paragraph>
                 <Input
+                    className={styles.input}
                     error={errors.email}
                     id="email"
-                    placeholder="abc@box.com"
+                    placeholder="Enter email"
                     {...register("email", {
                         required: {
                             value: true,
@@ -61,9 +63,13 @@ const LoginForm: React.FC<ILoginForm> = ({ className }) => {
                         },
                     })}
                 />
-                <Paragraph variant="m">Password</Paragraph>
+                <Paragraph className={styles.label} variant="m">
+                    Password
+                </Paragraph>
                 <Input
+                    className={styles.input}
                     error={errors.password}
+                    placeholder="Enter password"
                     id="password"
                     {...register("password", {
                         required: {

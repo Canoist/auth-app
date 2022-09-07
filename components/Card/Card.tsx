@@ -9,7 +9,7 @@ interface ICard
 
 export const Card: React.FC<ICard> = ({ children, className, ...props }) => {
     return (
-        <div className={cn(className, styles.card, styles.white)} {...props}>
+        <div className={cn(className, styles.card, styles.blue)} {...props}>
             {children}
         </div>
     );

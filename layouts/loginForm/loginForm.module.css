@@ -1,0 +1,22 @@
+.form {
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* box-shadow: 0 4px 4px rgb(0 0 0 / 5%); */
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    z-index: 2;
+}
+
+.label {
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    margin-bottom: 25px;
+}
